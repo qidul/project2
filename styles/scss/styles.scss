@@ -1,0 +1,35 @@
+@import 'setup';
+@import url('https://fonts.googleapis.com/css2?family=Molle:ital@1&display=swap');
+body {
+    height: 100vh;
+    background: rgb(0,0,8);
+    background: linear-gradient(180deg, rgba(0,0,8,1) 0%, rgba(9,9,121,1) 45%, rgba(14,65,207,1) 100%); 
+}
+
+
+header{
+    height: 100%;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%
+}
+
+
+h1 {
+    font-size: 100px;
+    color: white;
+    font-family: 'molle', sans-serif;
+    margin: 0 12px;
+}
+
+h2 {
+    font-size: 30px;
+    color: white;
+    font-family: 'molle', sans-serif;
+}
