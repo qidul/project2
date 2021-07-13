@@ -24,21 +24,25 @@ app.getTopArtists = () => {
     .then((data) => {
       const artistArray = data.topartists.artist;
       app.displayArtists(artistArray);
-    });
-};
-
-// function to listen for user submission
-app.userSearch = () => {
-  const formEl = document.querySelector('form');
-
-  formEl.addEventListener('submit', (event) => {
-    // prevent form refresh on submission
-    event.preventDefault();
-
-    // retrieve user input
-    const inputEl = document.querySelector('#search');
-    app.country = inputEl.value;
-
+    })
+      // error handling
+    .catch((error) => {
+      alert('An error has occured!')
+  })
+  };
+  
+  // function to listen for user submission
+  app.userSearch = () => {
+    const formEl = document.querySelector('form');
+    
+    formEl.addEventListener('submit', (event) => {
+      // prevent form refresh on submission
+      event.preventDefault();
+      
+      // retrieve user input
+      const inputEl = document.querySelector('#search');
+      app.country = inputEl.value;
+      
     // call the network request
     app.getTopArtists();
   });
@@ -71,6 +75,7 @@ app.displayArtists = (listofArtists) => {
     ulEl.appendChild(newLiElement);
   });
 };
+
 
 // init function
 app.init = () => {
