@@ -19,7 +19,11 @@ app.getTopArtists = () => {
 
   fetch(url)
     .then((res) => {
-      return res.json();
+      if(res.ok) {
+        return res.json();
+      } else {
+        throw new Error(res.statusText);
+      }
     })
     .then((data) => {
       const artistArray = data.topartists.artist;
@@ -85,5 +89,3 @@ app.init = () => {
 // call the init function
 app.init();
 
-// TO ADD:
-// error handling
