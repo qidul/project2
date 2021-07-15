@@ -6,6 +6,15 @@ app.baseURL = 'http://ws.audioscrobbler.com/2.0/';
 app.apiKey = '9cc5c371e7ee279ba2c3d42a029c83a4';
 app.country = '';
 
+app.infoURL = 'https://musicbrainz.org/ws/2/';
+
+// make a call to the musicbrainz API for image info
+
+app.getMusicData = () => {
+  const url = new URL(app.infoURL);
+  url.search = new URLSearchParams({});
+};
+
 // make a network call to the last.fm API
 app.getTopArtists = () => {
   const url = new URL(app.baseURL);
@@ -13,13 +22,13 @@ app.getTopArtists = () => {
     method: 'geo.gettopartists',
     country: app.country,
     api_key: app.apiKey,
-    limit: 10,
+    limit: 12,
     format: 'json',
   });
 
   fetch(url)
     .then((res) => {
-      if(res.ok) {
+      if (res.ok) {
         return res.json();
       } else {
         throw new Error(res.statusText);
@@ -29,24 +38,24 @@ app.getTopArtists = () => {
       const artistArray = data.topartists.artist;
       app.displayArtists(artistArray);
     })
-      // error handling
+    // error handling
     .catch((error) => {
-      alert('An error has occured!')
-  })
-  };
-  
-  // function to listen for user submission
-  app.userSearch = () => {
-    const formEl = document.querySelector('form');
-    
-    formEl.addEventListener('submit', (event) => {
-      // prevent form refresh on submission
-      event.preventDefault();
-      
-      // retrieve user input
-      const inputEl = document.querySelector('#search');
-      app.country = inputEl.value;
-      
+      alert('An error has occured!');
+    });
+};
+
+// function to listen for user submission
+app.userSearch = () => {
+  const formEl = document.querySelector('form');
+
+  formEl.addEventListener('submit', (event) => {
+    // prevent form refresh on submission
+    event.preventDefault();
+
+    // retrieve user input
+    const inputEl = document.querySelector('#search');
+    app.country = inputEl.value;
+
     // call the network request
     app.getTopArtists();
   });
@@ -55,6 +64,8 @@ app.getTopArtists = () => {
 // function to populate the page with the top 10 artists
 app.displayArtists = (listofArtists) => {
   // clear previous search results
+  console.log(listofArtists);
+
   const ulEl = document.querySelector('ul');
   ulEl.innerHTML = '';
 
@@ -80,7 +91,6 @@ app.displayArtists = (listofArtists) => {
   });
 };
 
-
 // init function
 app.init = () => {
   app.userSearch();
@@ -88,4 +98,3 @@ app.init = () => {
 
 // call the init function
 app.init();
-
