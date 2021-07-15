@@ -6,14 +6,19 @@ app.baseURL = 'http://ws.audioscrobbler.com/2.0/';
 app.apiKey = '9cc5c371e7ee279ba2c3d42a029c83a4';
 app.country = '';
 
-app.infoURL = 'https://musicbrainz.org/ws/2/';
+app.infoURL = 'https://musicbrainz.org/ws/2/artist';
 
 // make a call to the musicbrainz API for image info
 
-app.getMusicData = () => {
-  const url = new URL(app.infoURL);
-  url.search = new URLSearchParams({});
+app.getArtistData = (mbid) => {
+const url = new URL(`${app.infoURL}/${mbid}`);
+url.search = new URLSearchParams({
+inc: 'url-rels'
+});
+console.log(url);
 };
+
+
 
 // make a network call to the last.fm API
 app.getTopArtists = () => {
@@ -64,7 +69,6 @@ app.userSearch = () => {
 // function to populate the page with the top 10 artists
 app.displayArtists = (listofArtists) => {
   // clear previous search results
-  console.log(listofArtists);
 
   const ulEl = document.querySelector('ul');
   ulEl.innerHTML = '';
@@ -88,7 +92,16 @@ app.displayArtists = (listofArtists) => {
 
     // append to the ul element on the page
     ulEl.appendChild(newLiElement);
+
+    //  get artist mbid to get photo onto the page 
+    const artistID = artist.mbid; 
+
+    // call GetArtistData and then retreving artist info 
+    app.getArtistData(artistID);
+
+
   });
+  
 };
 
 // init function
