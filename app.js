@@ -6,25 +6,12 @@ app.baseURL = 'http://ws.audioscrobbler.com/2.0/';
 app.apiKey = '9cc5c371e7ee279ba2c3d42a029c83a4';
 app.country = '';
 
-app.infoURL = 'https://musicbrainz.org/ws/2/artist';
-
-// make a call to the musicbrainz API for image info
-
-app.getArtistData = (mbid) => {
-const url = new URL(`${app.infoURL}/${mbid}`);
-url.search = new URLSearchParams({
-inc: 'url-rels'
-});
-console.log(url);
-};
-
-
 
 // make a network call to the last.fm API
-app.getTopArtists = () => {
+app.getTopTracks = () => {
   const url = new URL(app.baseURL);
   url.search = new URLSearchParams({
-    method: 'geo.gettopartists',
+    method: 'geo.gettoptracks',
     country: app.country,
     api_key: app.apiKey,
     limit: 12,
@@ -36,16 +23,16 @@ app.getTopArtists = () => {
       if (res.ok) {
         return res.json();
       } else {
-        throw new Error(res.statusText);
+        throw new Error(error);
       }
     })
     .then((data) => {
-      const artistArray = data.topartists.artist;
-      app.displayArtists(artistArray);
+      const tracksArray = data.tracks.track;
+      app.displayTopTracks(tracksArray);
     })
     // error handling
     .catch((error) => {
-      alert('An error has occured!');
+      alert('Please Enter A Real Country!');
     });
 };
 
@@ -62,42 +49,46 @@ app.userSearch = () => {
     app.country = inputEl.value;
 
     // call the network request
-    app.getTopArtists();
+    app.getTopTracks();
   });
 };
 
-// function to populate the page with the top 10 artists
-app.displayArtists = (listofArtists) => {
+// function to populate the page with the top 10 tracks
+app.displayTopTracks = (listofTracks) => {
   // clear previous search results
 
   const ulEl = document.querySelector('ul');
   ulEl.innerHTML = '';
 
-  // loop through each artist and create an li element
-  listofArtists.forEach((artist) => {
+  // loop through each track and create an li element
+  listofTracks.forEach((track) => {
     // create new li element
     const newLiElement = document.createElement('li');
 
-    // create new header element and add artist's name
+    // create new header element and add tracks's name
     const newH2El = document.createElement('h2');
-    newH2El.textContent = artist.name;
+    newH2El.textContent = track.name;
 
     // add total listeners
     const newListeners = document.createElement('p');
-    newListeners.textContent = artist.listeners;
+    newListeners.textContent = track.listeners;
+
+    const newArtist = document.createElement('p');
+    newArtist.textContent = track.artist.name;
 
     // append to li element
     newLiElement.appendChild(newH2El);
     newLiElement.appendChild(newListeners);
+    newLiElement.appendChild(newArtist);
 
     // append to the ul element on the page
     ulEl.appendChild(newLiElement);
 
-    //  get artist mbid to get photo onto the page 
-    const artistID = artist.mbid; 
+    // //  get artist mbid to get photo onto the page 
+    // const artistID = artist.mbid; 
 
-    // call GetArtistData and then retreving artist info 
-    app.getArtistData(artistID);
+    // // call GetArtistData and then retreving artist info 
+    // app.getArtistData(artistID);
 
 
   });
