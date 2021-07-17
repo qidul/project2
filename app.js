@@ -135,6 +135,9 @@ app.createChart = (tracksArray) => {
   yLabel.textContent = 'Total number of listeners';
   resultsEl.appendChild(yLabel);
 
+  // set height of results container
+  resultsEl.style.height = '100vh';
+
   // call function to change the width of the bars
   app.updateBars();
 
