@@ -1,21 +1,44 @@
 @import 'setup';
+@import 'chart-styles';
 @import url('https://fonts.googleapis.com/css2?family=Molle:ital@1&family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li,
+img,
+section,
+main,
+figure,
+article,
+aside,
+footer,
+header {
+  padding: 0;
+  margin: 0;
+}
+
 body {
   height: 100vh;
   overflow-x: none;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background: rgb(0, 0, 8);
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 8, 1) 0%,
-    rgba(9, 9, 121, 1) 45%,
-    rgba(14, 65, 207, 1) 100%
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(0, 107, 141, 1) 0%,
+    rgba(0, 69, 91, 1) 90%
   );
+  color: rgb(255, 255, 255);
 }
 
-html {
+main {
   background-color: black;
 }
 
@@ -23,7 +46,7 @@ header {
   height: 100%;
 }
 
-.container {
+.header-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,8 +54,11 @@ header {
   height: 100%;
 }
 
-
-h2,h3,h4,h5,h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
 }
@@ -48,78 +74,42 @@ h2 {
   font-size: 30px;
   color: white;
   font-family: 'raleway', sans-serif;
+  margin: 35px 0;
 }
 
 p {
   color: white;
-  line-height: 170%;
 }
 
-input[type='text'], button{
+input[type='text'],
+button {
   padding: 15px;
   margin: 0;
   outline: none;
   background-color: rgba($color: #fff, $alpha: 0.2);
   border-radius: 4px;
-
 }
 
-.search-box{
+.search-box {
   min-width: 240px;
   color: white;
   margin-right: 20px;
-  border:2px solid transparent;
-  &::placeholder{
+  border: 2px solid transparent;
+  &::placeholder {
     color: white;
   }
-  &:focus{
+  &:focus {
     border-color: white;
   }
 }
-// list result styles
-
-ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  padding: 70px 0 40px 0;
-  justify-content: space-around;
-  
-
-.search-results{
-    background-color: #111;
-    border-radius: 4px;
-    padding: 20px;
-    margin-bottom: 30px;
-
-    h2{
-      font-size: 26px;
-      margin-bottom: 8px;
-
-    }
-
-    >*:first-child {margin-top: 0;}
-    >*:last-child{margin-bottom: 0;}
-
-    .highlight{
-      font-family: 'Fjalla One', sans-serif;
-      font-weight: bold;
-      font-size: 35px;
-      color: #777;
-      margin-right: 7px;
-    }
-  }
-}
-
 
 // footer styles
 footer {
+  padding: 10px 0;
   color: white;
   background: #333;
 
   a {
-    
     text-decoration: none;
     color: white;
     font-size: 16px;
@@ -146,12 +136,11 @@ button {
   color: white;
   border: 2px solid transparent;
   transition: background-color 0.2s;
-  &:hover{
+  &:hover {
     background: rgba($color: #fff, $alpha: 0.4);
     cursor: pointer;
   }
-  &:focus{
+  &:focus {
     background: rgba($color: #fff, $alpha: 0.6);
   }
 }
-

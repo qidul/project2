@@ -238,16 +238,110 @@ html {
   overflow: hidden;
 }
 
+/* set a width for the entire barchart width */
+svg {
+  width: 75vw;
+}
+
+rect {
+  fill: #98dbf0;
+  -webkit-transition: 1s width;
+  transition: 1s width;
+}
+rect:hover {
+  -webkit-transition: 0.3s fill;
+  transition: 0.3s fill;
+  fill: #00455b;
+}
+
+.labels {
+  text-align: right;
+  padding-right: 10px;
+  /* set height to same as svg */
+  height: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.artist {
+  /* height must be set to 10% (10 entries) */
+  height: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.chart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.song {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.ylabel {
+  font-size: 20px;
+  margin: 10px 0 50px;
+}
+
+.results {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li,
+img,
+section,
+main,
+figure,
+article,
+aside,
+footer,
+header {
+  padding: 0;
+  margin: 0;
+}
+
 body {
   height: 100vh;
   overflow-x: none;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background: #000008;
-  background: -webkit-gradient(linear, left top, left bottom, from(#000008), color-stop(45%, #090979), to(#0e41cf));
-  background: linear-gradient(180deg, #000008 0%, #090979 45%, #0e41cf 100%);
+  background-image: radial-gradient(circle farthest-corner at 10% 20%, #006b8d 0%, #00455b 90%);
+  color: white;
 }
 
-html {
+main {
   background-color: black;
 }
 
@@ -255,7 +349,7 @@ header {
   height: 100%;
 }
 
-.container {
+.header-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -272,7 +366,11 @@ header {
   height: 100%;
 }
 
-h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Roboto", sans-serif;
   font-weight: bold;
 }
@@ -288,14 +386,15 @@ h2 {
   font-size: 30px;
   color: white;
   font-family: "raleway", sans-serif;
+  margin: 35px 0;
 }
 
 p {
   color: white;
-  line-height: 170%;
 }
 
-input[type=text], button {
+input[type=text],
+button {
   padding: 15px;
   margin: 0;
   outline: none;
@@ -328,43 +427,8 @@ input[type=text], button {
   border-color: white;
 }
 
-ul {
-  list-style: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin: 0 auto;
-  padding: 70px 0 40px 0;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-ul .search-results {
-  background-color: #111;
-  border-radius: 4px;
-  padding: 20px;
-  margin-bottom: 30px;
-}
-ul .search-results h2 {
-  font-size: 26px;
-  margin-bottom: 8px;
-}
-ul .search-results > *:first-child {
-  margin-top: 0;
-}
-ul .search-results > *:last-child {
-  margin-bottom: 0;
-}
-ul .search-results .highlight {
-  font-family: "Fjalla One", sans-serif;
-  font-weight: bold;
-  font-size: 35px;
-  color: #777;
-  margin-right: 7px;
-}
-
 footer {
+  padding: 10px 0;
   color: white;
   background: #333;
 }
