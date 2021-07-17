@@ -1,7 +1,11 @@
 @import 'setup';
 @import url('https://fonts.googleapis.com/css2?family=Molle:ital@1&family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
 body {
   height: 100vh;
+  overflow-x: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background: rgb(0, 0, 8);
   background: linear-gradient(
     180deg,
@@ -9,6 +13,10 @@ body {
     rgba(9, 9, 121, 1) 45%,
     rgba(14, 65, 207, 1) 100%
   );
+}
+
+html {
+  background-color: black;
 }
 
 header {
@@ -21,6 +29,12 @@ header {
   align-items: center;
   flex-direction: column;
   height: 100%;
+}
+
+
+h2,h3,h4,h5,h6 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
 }
 
 h1 {
@@ -38,30 +52,106 @@ h2 {
 
 p {
   color: white;
+  line-height: 170%;
 }
 
+input[type='text'], button{
+  padding: 15px;
+  margin: 0;
+  outline: none;
+  background-color: rgba($color: #fff, $alpha: 0.2);
+  border-radius: 4px;
+
+}
+
+.search-box{
+  min-width: 240px;
+  color: white;
+  margin-right: 20px;
+  border:2px solid transparent;
+  &::placeholder{
+    color: white;
+  }
+  &:focus{
+    border-color: white;
+  }
+}
 // list result styles
 
 ul {
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 70px 0 40px 0;
+  justify-content: space-around;
+  
 
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+.search-results{
+    background-color: #111;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 30px;
+
+    h2{
+      font-size: 26px;
+      margin-bottom: 8px;
+
+    }
+
+    >*:first-child {margin-top: 0;}
+    >*:last-child{margin-bottom: 0;}
+
+    .highlight{
+      font-family: 'Fjalla One', sans-serif;
+      font-weight: bold;
+      font-size: 35px;
+      color: #777;
+      margin-right: 7px;
+    }
+  }
 }
+
 
 // footer styles
 footer {
   color: white;
+  background: #333;
 
   a {
+    
     text-decoration: none;
     color: white;
     font-size: 16px;
+
+    i {
+      transition: color 0.2s;
+      margin-left: 4px;
+      margin-right: 4px;
+      &:hover {
+        color: rgba(14, 65, 207, 1);
+      }
+    }
   }
 
   .footer-container {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
   }
 }
+
+button {
+  color: white;
+  border: 2px solid transparent;
+  transition: background-color 0.2s;
+  &:hover{
+    background: rgba($color: #fff, $alpha: 0.4);
+    cursor: pointer;
+  }
+  &:focus{
+    background: rgba($color: #fff, $alpha: 0.6);
+  }
+}
+
