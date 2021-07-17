@@ -142,6 +142,7 @@ app.createChart = (tracksArray) => {
   app.scrollToResults();
 };
 
+// function to calculate and set width of each bar
 app.updateBars = () => {
   // get all current bars in the chart
   const allBars = document.querySelectorAll('rect');
